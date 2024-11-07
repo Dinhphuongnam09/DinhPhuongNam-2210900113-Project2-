@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<Sem3_2.Models.SanPham>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@*@model IEnumerable<Sem3_2.Models.TinTuc>*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
+{
+    <p>
+        Tìm theo tiêu đề (nội dung): @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm" />
+    </p>
+}
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Tên Sản Phẩm", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                Tên Mã Sản Phẩm
+            </th>
+            <th>
+                Đơn Giá
+            </th>
+            <th>
+                @Html.ActionLink("Ngày Cập Nhật", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                Lượt Xem
+            </th>
+            <th>
+                Số Lượng Tồn
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSanPham)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaLoaiSanPham.TenLSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LuotXem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdSanPham }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdSanPham }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdSanPham })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    @if (Model.PageCount > 0)
+    {
+        <span>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</span>
+    }
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

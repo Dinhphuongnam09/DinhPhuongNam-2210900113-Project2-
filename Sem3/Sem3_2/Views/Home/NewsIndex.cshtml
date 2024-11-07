@@ -1,0 +1,73 @@
+﻿@model Sem3_2.Models.TinTuc
+@{
+    ViewBag.Title = "News";
+    ViewBag.URL = Url.Action("Index", "Home");
+    ViewBag.Container = "container";
+}
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.alla.com.vn/kien-thuc" />
+<meta property="og:title" content="Kiến thức thiết kế website" />
+<meta property="og:description" content="Hãy cùng nhau chia sẻ kiến thức website" />
+<meta property="og:image" content="URL_IMAGE" />
+<meta property="og:locale" content="vi_VN" />
+<meta property="fb:app_id" content="1348486291938888" />
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=1632614030377920";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "facebook-jssdk"));
+</script>
+<div class="row">
+    <div class="col-sm-12">
+        <br />
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+            <li><a href="@Url.Action("Index", "Home")#section5">Tin tức</a></li>
+            <li class="active">@Model.TieuDe</li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-9 text-left">
+        <h3>@Model.TieuDe</h3>
+        <h5><span class="glyphicon glyphicon-time"></span>@Model.NgayDang</h5>
+        <br />
+        @*<h5><span class="label label-success">Lorem</span></h5><br>*@
+        <img src="@Model.HinhAnhDaiDien" class="img-responsive pull-left img-rounded" alt="Image" style="width:100%">
+        <br />
+        <p>@Model.NoiDung</p>
+        <hr>
+
+        <div class="fb-comments" data-href="http://localhost:40678/home/newsindex/@Model.IdTinTuc" data-numposts="5"></div>
+    </div>
+
+
+
+    <nav class="col-xs-12 col-md-3">
+        <h3>Tin Tức Mới Nhất</h3>
+        @foreach (var item in @ViewBag.TinTucMoiNhats)
+        {
+            <div class="row">
+                <div class="col-xs-6 col-md-12">
+
+                    <img src="@item.HinhAnhDaiDien" class="img-responsive pull-left" style="width: 100%; margin-right: 10px" alt="Image">
+
+                </div>
+                <div class="col-xs-6 col-md-12">
+                    <a href="@Url.Action("NewsIndex", "Home", new { id = @item.IdTinTuc })">
+                        <p>
+                            @item.TieuDe
+                            <i class="fa fa-comment" style="color: red"> 9</i>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </nav>
+
+</div>
+
+@*<script src="~/Content/js/newsScript.js"></script>*@

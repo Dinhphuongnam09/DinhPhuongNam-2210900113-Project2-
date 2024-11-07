@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Sem3_2.Models.ChiTietDonDatHang>
+
+@{
+    ViewBag.Title = "DetailsList";
+    decimal tongtien = 0;
+}
+
+<h2>DetailsList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.TenSanPham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSanPham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </th>
+        <th>
+            Thanh Tien
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        tongtien += (decimal)(@item.SoLuong * @item.DonGia);
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @item.SoLuong*@item.DonGia VND
+            </td>
+        </tr>
+    }
+    @if (tongtien > 0)
+    {
+        <tr>
+            <td colspan="5" class="text-right">
+
+                {
+                <strong>Tổng tiền: @tongtien VND</strong>
+                }
+            </td>
+        </tr>
+    }
+</table>

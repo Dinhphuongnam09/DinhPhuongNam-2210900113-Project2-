@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Sem3_2.Models.MaLoaiSanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThongTin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThongTin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdMLSP }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdMLSP }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdMLSP })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,520 @@
+		body{
+			position: relative;
+		}
+		
+		h3{
+			font-weight: bold;
+		}
+		
+		#nav{
+            border-radius: 0;
+            box-shadow: 1px 2px 5px #000000;
+        }
+		
+		#id > a{
+			background-color: #101010;
+		}
+		
+		#section1, #section2, #section3, #section4, #section5, #thongso, #hinhanh, #phukien, #sosanh, #binhluan{
+				padding-top: 35px;
+		}
+
+         /*Css cho search*/
+        #divtimkiem{
+            width: 110% ;
+            display: none ;
+            background-color: pink;
+            position: absolute;
+            z-index: 9999;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            box-shadow: 1px 2px 5px #000000;
+            top: 43px;
+        }
+		
+        #divtimkiem ul{
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #divtimkiem ul li:last-child{
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        #divtimkiem ul li{
+            float: left;
+            width: 100%;
+            background-color: #ffffff;
+            float: left;
+            line-height: 25px;
+            cursor: pointer;
+            border-bottom: 1px solid #000000;
+        }
+
+        #divtimkiem ul li:hover{
+            background-color: lightsteelblue;
+        }
+
+        #divtimkiem ul li a{
+            padding: 5px !important;
+            display: block;
+            text-decoration: none;
+            color: #000000;
+        }
+
+        /*css for icon socicial*/
+        .fa.fa-facebook
+        {
+            font-size: 1em;
+            color: #fff;
+            background: #3c579e;
+            width: 30px;
+            height: 30px;
+            line-height: 2em;
+            transition: 0.5s all;
+            text-align: center;
+        }
+
+        .fa.fa-facebook:hover {
+            border-radius: 35px;
+            transition: 0.5s all;
+            -webkit-transition: 0.5s all;
+            -moz-transition: 0.5s all;
+            -o-transition: 0.5s all;
+        }
+
+        .fa.fa-twitter
+        {
+            font-size: 1em;
+            color: #fff;
+            background: #0f98ce;
+            width: 30px;
+            height: 30px;
+            line-height: 2em;
+            transition: 0.5s all;
+            text-align: center;
+        }
+
+        .fa.fa-twitter:hover {
+            border-radius: 35px;
+            transition: 0.5s all;
+            -webkit-transition: 0.5s all;
+            -moz-transition: 0.5s all;
+            -o-transition: 0.5s all;
+        }
+
+        .fa.fa-google-plus
+        {
+            font-size: 1em;
+            color: #fff;
+            background: #ca2429;
+            width: 30px;
+            height: 30px;
+            line-height: 2em;
+            transition: 0.5s all;
+            text-align: center;
+        }
+
+        .fa.fa-google-plus:hover {
+            border-radius: 35px;
+            transition: 0.5s all;
+            -webkit-transition: 0.5s all;
+            -moz-transition: 0.5s all;
+            -o-transition: 0.5s all;
+        }
+
+
+        /*css for profile*/
+        #logoutForm > ul > li.dropdown.profile_details_drop > a > i.fa.fa-caret-down{
+            display: inline-block;
+        }
+
+        #logoutForm > ul > li.dropdown.profile_details_drop > a > i.fa.fa-caret-up{
+            display: none;
+        }
+
+        #logoutForm > ul > li.dropdown.profile_details_drop.open > a > i.fa.fa-caret-down{
+            display: none;
+        }
+
+        #logoutForm > ul > li.dropdown.profile_details_drop.open > a > i.fa.fa-caret-up{
+            display: inline-block;
+        }
+
+		/* Remove the navbar's default rounded borders and increase the bottom margin */ 
+		.navbar {
+		  border-radius: 0;
+		}
+		
+		.carousel-inner img {
+		  width: 100%; /* Set width to 100% */
+		  min-height: 200px;
+		}
+	
+		/* Remove the jumbotron's default bottom margin */ 
+		 .jumbotron {
+		  margin-bottom: 0;
+		}
+		
+		#myScrollspy{
+			padding: 0;
+		}
+		
+		#myScrollspy > ul > li > a{
+			padding: 20px !important;
+		}
+
+		.affix {
+			top: 0;
+			z-index: 8888 !important;
+			width: 100%;
+			-webkit-transition: all .5s ease-in-out;
+            -moz-transition: all .5s ease-in-out;
+			transition: all .5s ease-in-out;
+		}
+		
+		#myScrollspy .affix{
+			    top: 57px;
+				z-index: 6666 !important;
+				width: 120px;
+				-webkit-transition: none;
+				-moz-transition: none;
+				transition:none;
+				border-color: #F44336;
+		}
+		
+		.affix .sidenav{
+			display: block;
+		}
+		
+		
+		
+		.affix a {
+			padding: 15px !important;
+			-webkit-transition: all .5s ease-in-out;
+            -moz-transition: all .5s ease-in-out;
+			-webkit-transition: all .5s ease-in-out;
+			transition: all .5s ease-in-out;
+		}
+		
+		.affix .hidemenu {
+            display: none !important;
+        }
+		
+		#myNavbar > ul:nth-child(1) > li {
+			text-align: center;
+		}
+		
+		.affix-top div.navbar-header > form > div{
+			margin-top: 10px !important;
+		}
+		
+		.affix-top a {
+			padding: 25px !important;
+		}
+		.affix + .container {
+			padding-top: 90px;
+		}
+        .affix + .container-fluid{
+			padding-top: 90px;
+		}
+	  
+		/* Add a gray background color and some padding to the footer */
+		footer {
+		  background-color: #f2f2f2;
+		  padding: 25px;
+		}
+		
+		.affix-top #myNavbar > ul:nth-child(1) > li > a{
+			padding: 10px !important;
+		}
+		
+		.navbar-inverse .navbar-nav>li>a {
+			color: #999;
+		}
+		
+		.affix #myNavbar > ul:nth-child(1) > li > a{
+			padding: 10px !important;
+		}
+		
+		@media screen and (max-width: 1200px){
+			#register, #login, #profile{
+				display: none ;
+			}
+			
+			.text {
+				font-size: 12px !important;
+			}
+			
+			.xemthem{
+				line-height: 233px !important;
+			}
+
+		}
+		
+		@media screen and (max-width: 1000px){
+			#cart{
+				display: none;
+			}
+			
+			.xemthem{
+				line-height: 263px !important;
+			}
+
+		}
+		
+		@media screen and (max-width: 990px){
+			.text {
+				font-size: 20px !important;
+			}
+		}
+		
+		
+		@media screen and (max-width: 767px) {
+
+            #divtimkiem{
+                width: 98% !important;
+            }
+
+			.text {
+				font-size: 22px !important;
+			}
+			
+			#myScrollspy > ul{
+				position: static;
+			}
+			
+			#myNavbar ul > li{
+                display: inline-block;
+            }
+			
+			.affix-top .navbar-brand {
+				padding: 15px !important;
+			}
+			
+			.affix-top div.navbar-header > form > div {
+				margin-top: 0 !important;
+			}
+			
+			.navbar-form{
+				padding-top: 0 !important;
+			}
+			
+			body > nav > div > div.navbar-header > form > div{
+				padding-right: 10px;
+			}
+			
+			body > nav > div > div.navbar-header > form{
+				margin-bottom: 0 !important;
+				border: none;
+			}
+			
+			#myScrollspy, .dongia, .hidemenu1{
+				display: none;
+			}
+			
+		}
+		
+		@media screen and (max-width: 580px){
+            #divtimkiem{
+                width: 97% !important;
+            }
+
+			.text {
+				font-size: 16px !important;
+			}
+		}
+		
+		@media screen and (max-width: 420px){
+
+            #divtimkiem{
+                width: 96% !important;
+            }
+
+			.text {
+				font-size: 13px !important;
+			}
+		}
+		
+		.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+			background-color: none;
+		}
+		
+		.navbar-inverse .navbar-toggle {
+			border-color: white;
+		}
+		
+		.tab-content div h3 {
+			text-align: center;
+			background-color: #3c599b;
+			font-weight: bold;
+			color: #ffffff;
+			padding: 5px;
+		}
+		
+		/*Css cho slide chạy ngang*/
+        #banner { clear:both; background: #ffffff; width: 100% ; height: 100% ;max-height:340px; padding-top:20px; font-family: tahoma;font-size: 11px;line-height: 17px;text-align: justify;}
+        #banner>h3 { color: blue;}
+        #banner a { margin-left:25px;}
+        #slideB { margin:20px auto 0; border-top: #CCC solid 1px; padding-top:20px; width: 100%; height: 100% ;max-height:220px; clear:both; overflow:hidden;}
+        #inslideB {float: left;width: 1250%;}
+        #inslideB1 {float: left;}
+        #inslideB1 a{
+            position: relative;
+            display: inline-block;
+        }
+        #inslideB2 {float: left;}
+
+        /*Css cho xếp hạng top 10*/
+        .xephang{
+            font-weight: bold;
+            font-size: 34px;
+            color: #CD8641;
+            position: absolute;
+            right: 0px;
+            top: 14px;
+        }
+        .huychuong{
+            position: absolute;
+            right: -26px;
+            top: -15px;
+        }
+		
+		/*Css cho giỏ hàng*/
+
+        td{
+            text-align: center;
+        }
+
+        td strong{
+            color: red;
+        }
+
+        th{
+            text-align: center;
+        }
+		
+		/*Ẩn phần xem thêm trong danh mục sản phẩm*/
+        .them{
+            display: none;
+        }
+
+        /* Popover */
+        .popover {
+            border: 2px dotted brown;
+        }
+        /* Popover Header */
+        .popover-title {
+            background-color: cadetblue;
+            color: white;
+            font-size: 20px;
+            text-align:center;
+        }
+        /* Popover Body */
+        .popover-content {
+            background-color: black;
+            color: #FFFFFF;
+            padding: 25px;
+        }
+        /* Popover Arrow */
+        .arrow {
+            border-top-color: red !important;
+        }
+		
+		#myScrollspy > ul > li > a > i, span{
+			color: #555;
+		}
+		
+		body > div.container > div > nav > ul > li > div > img{
+			border-radius: 10px;
+		}
+		
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 10px;
+			right: 10px;
+			z-index: 99;
+			border: none;
+			outline: none;
+			background-color: white;
+			color: #555;
+			cursor: pointer;
+			border-radius: 100%;
+			padding: 0;
+		}
+		
+		#mySidenav > li{
+			list-style-type: none;
+		}
+		
+		#mySidenav > li > a > span{
+			font-size: 10px;
+		}
+		
+		/*Ẩn phần xem thêm trong danh mục sản phẩm*/
+        .them{
+            display: none;
+        }
+		
+		/* show cau hinh */
+		
+		.panel-body {
+		  position: relative;
+		  
+		}
+
+		.image {
+		  display: block;
+		  width: 100%;
+		  height: auto;
+		}
+
+		.overlay {
+		  position: absolute;
+		  bottom: 100%;
+		  left: 0;
+		  right: 0;
+		  background-color: white;
+		  overflow: hidden;
+		  width: 100%;
+		  height:0;
+		  transition: .5s ease;
+		}
+
+		.panel-body:hover .overlay {
+		  bottom: 0;
+		  height: 100%;
+		}
+
+		.text {
+		  white-space: nowrap; 
+		  color: black;
+		  font-size: 14px;
+		  position: absolute;
+		  overflow: hidden;
+		  top: 50%;
+		  left: 35%;
+		  transform: translate(-50%, -50%);
+		  -ms-transform: translate(-50%, -50%);
+		}
+		
+		hr{
+			margin: 5px 0;
+		}
+		
+		.text span{
+			color: #428bca;
+			font-weight: bold;
+		}
+		
+		.text strong{
+			color: red;
+			font-weight: bold;
+		}
+		
+		.text u{
+			font-size: small;
+			color: gray;
+		}

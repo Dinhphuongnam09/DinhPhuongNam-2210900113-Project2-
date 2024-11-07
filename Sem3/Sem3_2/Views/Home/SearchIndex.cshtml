@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Sem3_2.Models.SanPham>
+
+@{
+    ViewBag.Title = "SearchIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Count == 0)
+{
+    <p>Khong tim thay ket qua phu hop voi tu khoa "@ViewBag.searchStringNav"</p>
+}
+else
+{
+    <p>Co @ViewBag.Count ket qua tim kiem phu hop voi tu khoa "@ViewBag.searchStringNav"</p>
+}
+
+
+<table class="table">
+    <tr> 
+        <th>
+            @Html.DisplayNameFor(model => model.TenSanPham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenSanPham)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoTa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HinhAnh)
+        </td>
+    </tr>
+}
+
+</table>

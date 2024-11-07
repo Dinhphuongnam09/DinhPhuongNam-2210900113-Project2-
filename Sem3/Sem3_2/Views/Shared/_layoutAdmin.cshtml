@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin";
+    ViewBag.Url = @Url.Action("Index", "Home");
+    ViewBag.Container = "container-fluid";
+}
+
+<div class="row content">
+    <div class="col-sm-3 col-md-2 sidenav">
+        <h2>T-Store</h2>
+        <ul id="menu" class="nav nav-pills nav-stacked text-center">
+            <li class="active"><a href="@Url.Action("Index","Admin")"><i class="fa fa-tachometer"></i>Dashboard</a></li>
+            <li><a href="@Url.Action("Chart","Admin")"><i class="fa fa-bar-chart"></i>Charts</a></li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    Pages
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="width: 100%; text-align:center" id="listData">
+                    <li><a href="@Url.Action("Index", "SanPhams")">Sản Phẩm</a></li>
+                    <li><a href="@Url.Action("Index","LoaiSanPhams")">Loại Sản Phẩm </a></li>
+                    <li><a href="@Url.Action("Index","MaLoaiSanPhams")">Mã Loại Sản Phẩm</a></li>
+                    <li><a href="@Url.Action("Index","KhachHangs")">Khách Hàng</a></li>
+                    <li><a href="@Url.Action("Index","TinTucs")">Tin Tức</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+    <script type="text/javascript" src="~/Content/js/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+
+            if (window.location.href.indexOf("Chart") > -1) {
+                $("#menu li:eq(0)").removeClass("active");
+                $("#menu > li:eq(1)").addClass("active");
+            }
+
+            if (window.location.href.indexOf("/SanPhams") > -1) {
+                $("#menu li:eq(0)").removeClass("active");
+                $("#menu > li:last-child").addClass("active");
+                $("#listData li:eq(0)").addClass("active");
+            }
+
+            if (window.location.href.indexOf("/LoaiSanPhams") > -1) {
+                $("#menu li:eq(0)").removeClass("active");
+                $("#menu > li:last-child").addClass("active");
+                $("#listData li:eq(1)").addClass("active");
+            }
+
+            if (window.location.href.indexOf("/MaLoaiSanPhams") > -1) {
+                $("#menu li:eq(0)").removeClass("active");
+                $("#menu > li:last-child").addClass("active");
+                $("#listData li:eq(2)").addClass("active");
+            }
+
+            if (window.location.href.indexOf("/KhachHangs") > -1) {
+                $("#menu li:eq(0)").removeClass("active");
+                $("#menu > li:last-child").addClass("active");
+                $("#listData li:eq(3)").addClass("active");
+            }
+
+            if (window.location.href.indexOf("/TinTucs") > -1) {
+                $("#menu li:eq(0)").removeClass("active");
+                $("#menu > li:last-child").addClass("active");
+                $("#listData li:eq(4)").addClass("active");
+            }
+        })
+    </script>
+    <br>
+    <div class="col-sm-9 col-md-10" id="detailsDiv">
+        @RenderBody()
+    </div>
+</div>
+
+

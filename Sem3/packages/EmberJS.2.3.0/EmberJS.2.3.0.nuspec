@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EmberJS</id>
+    <version>2.3.0</version>
+    <title>Ember JavaScript Mvc Framework</title>
+    <authors>Yehuda Katz, Tom Dale, Charles Jolley and Ember.js contributors</authors>
+    <owners>Yehuda Katz, Tom Dale, Charles Jolley and Ember.js contributors</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>http://emberjs.com/builds/#/release</projectUrl>
+    <iconUrl>http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>EmberJs is JavaScript MVC Framework for creating ambitious web applications.
+
+Ember.js is built for productivity. Designed with developer ergonomics in mind, its friendly APIs help you get your job</description>
+    <summary>EmberJS &amp; EmberData -  a JavaScript MVC Framework  version   2.3.0
+
+You can download EMBER BETA BUILDS - http://emberjs.com/builds/#/beta</summary>
+    <releaseNotes>EmberJS -  https://github.com/emberjs/ember.js/blob/v2.3.0/CHANGELOG.md
+EmberData - https://github.com/emberjs/data/blob/v2.3.0/CHANGELOG.md</releaseNotes>
+    <language>en-US</language>
+    <tags>Ember EmberJS EmberData Handlebars MVC JavaScript JavaScriptMvc</tags>
+    <dependencies>
+      <dependency id="jQuery" version="2.1.1" />
+      <dependency id="Handlebars.js" version="2.0.0" />
+    </dependencies>
+  </metadata>
+</package>

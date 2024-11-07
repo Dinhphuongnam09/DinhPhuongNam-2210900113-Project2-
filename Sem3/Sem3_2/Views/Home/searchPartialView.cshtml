@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Sem3_2.DTOs.SanPhamSearchDTO>
+
+<ul>
+@if (@Model.Count() > 0)
+{
+        foreach (var item in @Model)
+        {
+            <li>
+                <a href="@Url.Action("ProductIndex", "Home", new { id = item.idSP})">
+                    <img style="float: left; margin-right: 10px" src="@item.hinhanh" height="50">
+                    <span><b>@item.tenSP</b><br />
+                        <span class="spanforSearch" style="color: red"><strong>@String.Format("{0:0,0}", @item.dongia).Replace(",", ".")</strong><sup>đ</sup></span>
+                    </span>
+                </a>
+            </li>
+        }
+}
+else
+{
+    <li>Ko tìm thấy kết quả nào phù hợp!</li>
+}
+
+</ul>    

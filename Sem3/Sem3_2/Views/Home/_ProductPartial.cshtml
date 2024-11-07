@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Sem3_2.Models.SanPham>
+
+<ul class="nav nav-tabs" style="font-weight: bold">
+
+    @{string temp = String.Empty;}
+
+    @foreach (var item in @Model.OrderBy(x => x.MaLoaiSanPham.Logo))
+    {
+        string val = temp == String.Empty ? "active" : "";
+
+        if (temp.Equals(@item.MaLoaiSanPham.Logo, StringComparison.OrdinalIgnoreCase))
+        {
+            continue;
+        }
+
+        <li class="@val"><a data-toggle="tab" href="#@item.LoaiSanPham.BiDanh.Insert(0, @item.IdSanPham.ToString())">@item.MaLoaiSanPham.Logo</a></li>
+        temp = @item.MaLoaiSanPham.Logo;
+    }
+
+</ul>
+
+<div class="tab-content">
+    @{temp = String.Empty;}
+    @foreach (var item in @Model.OrderBy(x => x.MaLoaiSanPham.Logo))
+    {
+        if (!temp.Equals(@item.MaLoaiSanPham.Logo, StringComparison.OrdinalIgnoreCase))
+        {
+            string val = temp == String.Empty ? "in active" : "";
+            temp = item.MaLoaiSanPham.Logo;
+
+            <div id="@item.LoaiSanPham.BiDanh.Insert(0,@item.IdSanPham.ToString())" class="tab-pane fade @val">
+                <h3>@item.MaLoaiSanPham.Logo</h3>
+
+                <div style="display: inline-block; width: 100%">
+                    <ul class="nav nav-tabs" style="display: none">
+                        <li class="active"><a href="#xemnhieuiphone">Xem nhieu</a></li>
+                        <li><a href="#giamdaniphone">Gia giam dan</a></li>
+                        <li><a href="#tangdaniphone">Gia tang dan</a></li>
+                    </ul>
+                    <select bidanh="@item.LoaiSanPham.BiDanh" logo="@temp" style="float: right; border: none; outline: none; font-size: 15px; font-weight: bold" class="homeSelect">
+                        <option value="xemnhieu">Xem nhiều nhất</option>
+                        <option value="giam">Giá cao đến thấp</option>
+                        <option value="tang">Giá thấp đến cao</option>
+                    </select>
+                    <br>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active">
+                            @Html.Partial("_SubProductPartial", @Model.Where(x => x.MaLoaiSanPham.Logo.Equals(temp, StringComparison.OrdinalIgnoreCase)))
+                            @*@foreach (var item1 in @Model.Where(x => x.MaLoaiSanPham.Logo.Equals(temp, StringComparison.OrdinalIgnoreCase)).Take(5))
+                            {
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                                        <div class="panel-body">
+                                            <a href="@Url.Action("ProductIndex", "Home", new { id = @item1.IdSanPham})">
+                                                <img src="@item1.HinhAnh" class="img-responsive" style="width:100%" alt="Image">
+                                                <div class="overlay">
+                                                    <div class="text">
+                                                        <span>@item1.TenSanPham</span><br>
+                                                        <strong>@String.Format("{0:0,0}", @item1.DonGia).Replace(",", ".")</strong><sup>đ</sup>
+                                                        <hr>
+                                                        @{
+                                                            string[] ts = @item1.MoTa.Split(';');
+                                                        }
+                                                        @for (int i = 1; i < ts.Length; i++)
+                                                        {
+                                                            if (i == 4) { break; }
+
+                                                        @ts[@i].Trim()<br />
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <span style="position: absolute; right: 5px; bottom: 5px"><button onclick="myClickmua('@item1.HinhAnh','@item1.TenSanPham','@String.Format("{0:0,0}", @item1.DonGia).Replace(",", ".")','@item1.SoLuongTon')" type="button" class="btn btn-default" style="box-shadow: 1px 2px 5px #000000;">Mua</button></span>
+                                        </div>
+
+                                        <div class="panel-footer">Giảm giá còn: @String.Format("{0:0,0}", @item1.GiaKhuyenMai).Replace(",", ".")<sup>đ</sup></div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (@Model.Where(x => x.MaLoaiSanPham.Logo.Equals(temp, StringComparison.OrdinalIgnoreCase)).Count() > 5)
+                            {
+
+                                <div class="col-sm-12 col-md-6 xemthem" style="cursor: pointer; text-align: center; line-height: 263px">
+                                    <div class="panel panel-info">
+                                        <i class="fa fa-toggle-right" style="font-size:40px;">Xem thêm</i>
+                                    </div>
+                                </div>
+
+                                foreach (var item1 in @Model.Where(x => x.MaLoaiSanPham.Logo.Equals(temp, StringComparison.OrdinalIgnoreCase)).Skip(5))
+                                {
+                                    <div class="col-sm-12 col-md-6 them">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                                            <div class="panel-body">
+                                                <a href="@Url.Action("ProductIndex", "Home", new { id = @item1.IdSanPham})">
+                                                    <img src="@item1.HinhAnh" class="img-responsive" style="width:100%" alt="Image">
+                                                    <div class="overlay">
+                                                        <div class="text">
+                                                            <span>@item1.TenSanPham</span><br>
+                                                            <strong>@String.Format("{0:0,0}", @item1.DonGia).Replace(",", ".")</strong><sup>đ</sup>
+                                                            <hr>
+                                                            @{
+                                                                string[] ts = @item1.MoTa.Split(';');
+                                                            }
+                                                            @for (int i = 1; i < ts.Length; i++)
+                                                            {
+                                                                if (i == 4) { break; }
+
+                                                            @ts[@i].Trim()<br />
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <span style="position: absolute; right: 5px; bottom: 5px"><button onclick="myClickmua('@item1.HinhAnh','@item1.TenSanPham','@item1.DonGia','@item1.SoLuongTon')" type="button" class="btn btn-default" style="box-shadow: 1px 2px 5px #000000;">Mua</button></span>
+                                            </div>
+
+                                            <div class="panel-footer">Giảm giá còn: @String.Format("{0:0,0}", @item1.GiaKhuyenMai).Replace(",", ".")<sup>đ</sup></div>
+                                        </div>
+                                    </div>
+                                }
+                            }*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

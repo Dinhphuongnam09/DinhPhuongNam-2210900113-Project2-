@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Sem3_2.Models.SanPham>
+
+@foreach (var item1 in @Model.Take(5))
+{
+    <div class="col-sm-12 col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">BLACK FRIDAY DEAL</div>
+            <div class="panel-body">
+                <a href="@Url.Action("ProductIndex", "Home", new { id = @item1.IdSanPham})">
+                    <img src="@item1.HinhAnh" class="img-responsive" style="width:100%" alt="Image">
+                    <div class="overlay">
+                        <div class="text">
+                            <span>@item1.TenSanPham</span><br>
+                            <strong>@String.Format("{0:0,0}", @item1.DonGia).Replace(",", ".")</strong><sup>đ</sup>
+                            <hr>
+                            @{
+    string[] ts = @item1.MoTa.Split(';');
+                            }
+                            @for (int i = 1; i < ts.Length; i++)
+                            {
+                                if (i == 4) { break; }
+
+                                @ts[@i].Trim()<br />
+                            }
+
+                        </div>
+                    </div>
+                </a>
+                <span style="position: absolute; right: 5px; bottom: 5px"><button onclick="myClickmua('@item1.HinhAnh','@item1.TenSanPham','@String.Format("{0:0,0}", @item1.DonGia).Replace(",", ".")','@item1.SoLuongTon')" type="button" class="btn btn-default" style="box-shadow: 1px 2px 5px #000000;">Mua</button></span>
+            </div>
+
+            <div class="panel-footer">Giảm giá còn: @String.Format("{0:0,0}", @item1.GiaKhuyenMai).Replace(",", ".")<sup>đ</sup></div>
+        </div>
+    </div>
+}
+
+@if (@Model.Count() > 5)
+{
+
+    <div class="col-sm-12 col-md-6 xemthem" style="cursor: pointer; text-align: center; line-height: 263px">
+        <div class="panel panel-info">
+            <i class="fa fa-toggle-right" style="font-size:40px;">Xem thêm</i>
+        </div>
+    </div>
+
+    foreach (var item1 in @Model.Skip(5))
+    {
+        <div class="col-sm-12 col-md-6 them">
+            <div class="panel panel-info">
+                <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                <div class="panel-body">
+                    <a href="@Url.Action("ProductIndex", "Home", new { id = @item1.IdSanPham})">
+                        <img src="@item1.HinhAnh" class="img-responsive" style="width:100%" alt="Image">
+                        <div class="overlay">
+                            <div class="text">
+                                <span>@item1.TenSanPham</span><br>
+                                <strong>@String.Format("{0:0,0}", @item1.DonGia).Replace(",", ".")</strong><sup>đ</sup>
+                                <hr>
+                                @{
+                                     string[] ts = @item1.MoTa.Split(';');
+                                }
+                                @for (int i = 1; i < ts.Length; i++)
+                                {
+                                    if (i == 4) { break; }
+
+                                    @ts[@i].Trim()<br />
+                                }
+
+                            </div>
+                        </div>
+                    </a>
+                    <span style="position: absolute; right: 5px; bottom: 5px"><button onclick="myClickmua('@item1.HinhAnh','@item1.TenSanPham','@item1.DonGia','@item1.SoLuongTon')" type="button" class="btn btn-default" style="box-shadow: 1px 2px 5px #000000;">Mua</button></span>
+                </div>
+
+                <div class="panel-footer">Giảm giá còn: @String.Format("{0:0,0}", @item1.GiaKhuyenMai).Replace(",", ".")<sup>đ</sup></div>
+            </div>
+        </div>
+    }
+}

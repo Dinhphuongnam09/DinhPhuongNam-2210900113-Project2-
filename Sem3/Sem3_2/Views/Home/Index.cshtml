@@ -1,0 +1,131 @@
+﻿@model Sem3_2.DTOs.HomeDTO
+
+@{
+    ViewBag.Target = "#nav";
+    ViewBag.Title = "Home";
+    ViewBag.Container = "container";
+}
+
+@*@foreach (var item in Model.SanPhams)
+    {
+        @item.TenSanPham
+    }
+    <br />
+    @foreach (var item in Model.TinTucs)
+    {
+        @item.TieuDe
+    }*@
+<div class="row">
+    <div class="col-sm-8">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="~/images/636259506293314936_iPhone6-H1.jpg" alt="Image">
+                    <div class="carousel-caption">
+                        <h3>Sell $</h3>
+                        <p>Money Money.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/images/636258867497545912_IMG_23032017_172509_0.png" alt="Image">
+                    <div class="carousel-caption">
+                        <h3>More Sell $</h3>
+                        <p>Lorem ipsum...</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/images/636259636949838936_Sony-Xperia-XZs-H1.jpg" alt="Image">
+                    <div class="carousel-caption">
+                        <h3>More Sell 1$</h3>
+                        <p>Lorem ipsum...</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/images/636260571318918900_oppoF1s-H1.png" alt="Image">
+                    <div class="carousel-caption">
+                        <h3>More Sell 2$</h3>
+                        <p>Lorem ipsum...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <br>
+
+        <div class="row" id="section1">
+            <h3>Phone</h3>
+            @Html.Partial("_ProductPartial", @Model.SanPhams.Where(x => x.LoaiSanPham.BiDanh.Equals("dt", StringComparison.OrdinalIgnoreCase)))
+        </div>
+        <br>
+
+        <div class="row" id="section2">
+            <h3>Tablet</h3>
+            @Html.Partial("_ProductPartial", @Model.SanPhams.Where(x => x.LoaiSanPham.BiDanh.Equals("mtb", StringComparison.OrdinalIgnoreCase)))
+        </div>
+        <br>
+
+        <div class="row" id="section3">
+
+            <h3>LapTop</h3>
+            @Html.Partial("_ProductPartial", @Model.SanPhams.Where(x => x.LoaiSanPham.BiDanh.Equals("lt", StringComparison.OrdinalIgnoreCase)))
+        </div>
+        <br>
+
+        <div class="row" id="section4">
+
+            <h3>Phụ Kiện</h3>
+
+            @Html.Partial("_ProductPartial", @Model.SanPhams.Where(x => x.LoaiSanPham.BiDanh.Equals("pk", StringComparison.OrdinalIgnoreCase)))
+        </div>
+        <br>
+
+        <div class="row" id="section5">
+
+            <h3>Tin Tức</h3>
+            <div class="tab-content">
+                <div id="newsHome" class="tab-pane fade in active" style="background-color: white">
+
+                    @Html.Partial("_NewsPartial", @Model.TinTucs)
+
+                </div>
+                @if (@Model.TinTucs.Count > 4)
+                {
+                    <button id="xemBtn" type="button" class="btn btn-primary btn-lg btn-block">
+                        Xem Thêm
+                    </button>
+                }
+            </div>
+
+
+        </div>
+        <br>
+    </div>
+
+    @Html.Partial("AdsPartial")
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/homeScript")
+}

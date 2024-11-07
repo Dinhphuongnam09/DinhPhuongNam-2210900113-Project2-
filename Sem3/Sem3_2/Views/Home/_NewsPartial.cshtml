@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Sem3_2.Models.TinTuc>
+
+@foreach (var item in @Model)
+{
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">@item.TieuDe</div>
+            <div class="panel-body">
+                <a href="@Url.Action("NewsIndex", "Home", new { id = @item.IdTinTuc})"><img src="@item.HinhAnhDaiDien" class="img-responsive pull-left" style="height: 108px; margin-right: 10px" align="bottom" alt="Image"></a>
+                <p align="left">
+                    @item.NoiDungRutGonHome
+                </p>
+            </div>
+            <div class="panel-footer text-right">@Html.ActionLink("Xem Thêm", "NewsIndex", "Home", new { id = @item.IdTinTuc }, null)</div>
+        </div>
+    </div>
+}
+
+
+
+

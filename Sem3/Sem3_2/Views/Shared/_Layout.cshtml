@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | T-Store</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body data-spy="scroll" data-target="@ViewBag.Target">
+
+    <button id="myBtn" title="Go to top"><i class="fa fa-arrow-circle-up" style="font-size:36px"></i></button>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>T-Store</h1>
+            <p>Mission, Vission & Values</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" role="dialog" style="top: 50px; z-index: 9999">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="text-center"><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                            <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                            <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" checked>Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" style="color: #000000; top: 50px; z-index: 9999">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center; font-weight: bold">GIỎ HÀNG CỦA BẠN</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover" id="cartItems">
+                        <tr class="alert-danger">
+                            <th>HÌNH ẢNH</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th class="dongia">ĐƠN GIÁ</th>
+                            <th class="hidemenu1">SỐ LƯỢNG</th>
+                            <th class="hidemenu1">THÀNH TIỀN</th>
+                            <th>XÓA</th>
+                        </tr>
+                    </table>
+                    <div class="bg-danger" style="width: 100%; text-align: right; font-weight: bold; font-size: 12px">
+                        <span>TỔNG CỘNG:</span>
+                        <span id="tongtien" style="padding-left: 10px; float: right; color: red">0 VNĐ</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Tiếp tục mua
+                    </button>
+                    <button onclick="if($('table:first input').length < 1){$(this).attr('data-toggle','');alert('Giỏ hàng trống')}else{$(this).attr('data-toggle','modal')}" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+                        Thanh toán <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal1" role="dialog" style="color: #000000; top: 50px; z-index: 9999 !important">
+        <div class="modal-dialog" style="width: 400px">
+            <div class="modal-content" style="padding-left: 40px">
+                <form action="/home/thanhtoan" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" onclick="$('#infodathang .span').css('display','none')">&times;</button>
+                        <h4 class="modal-title" style="text-align: center; font-weight: bold;color: blue">THANH TOÁN</h4>
+                    </div>
+                    <div class="modal-body" style="font-size: 16px; float: left" id="infodathang">
+                        <b>1. Thông tin người mua: </b> <br>
+                        <div class="form-group has-feedback">
+                            <div>
+                                <input placeholder="Họ tên của bạn (Bắt buộc)" style="width: 280px; margin: 5px 0 5px 0" type="text" name="hovaten" class="form-control input" id="hovaten">
+                                <span class="glyphicon form-control-feedback"></span>
+                                <span class="span" id="ycTen" style="color: red;font-size: 12px; display: none">Quý khách cần điền tên</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <div>
+                                <input placeholder="Số di động (Bắt buộc)" style="width: 280px; margin: 5px 0 5px 0" name="dienthoai" type="text" class="form-control input" id="sodt" onkeydown="return ( event.ctrlKey || event.altKey
+                            || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
+                            || (95<event.keyCode && event.keyCode<106)
+                            || (event.keyCode==8) || (event.keyCode==9)
+                            || (event.keyCode>34 && event.keyCode<40)
+                            || (event.keyCode==46) )">
+                                <span class="glyphicon form-control-feedback"></span>
+                                <span class="span" id="ycSDT" style="color: red;font-size: 12px; display: none">Quý khách cần điền số điện thoại</span>
+                                <span class="span" id="ycSDT1" style="color: red;font-size: 12px; display: none">Số điện thoại ít nhất là mười số</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <div>
+                                <input id="email" name="email" placeholder="Email (Để nhận thông tin đặt hàng)" style="width: 280px; margin: 5px 0 5px 0" type="text" class="form-control input">
+                                <span class="glyphicon form-control-feedback"></span>
+                                <span class="span" id="ycEmail" style="color: red;font-size: 12px;display: none">Quý khách cần điền email</span>
+                                <span class="span" id="ycEmail1" style="color: red;font-size: 12px; display: none">Email không hợp lệ</span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <div>
+                                <input id="address" name="diachia" placeholder="Địa chỉ liên hệ" style="width: 280px; margin: 5px 0 5px 0" type="text" class="form-control input">
+
+                            </div>
+                        </div>
+
+                        <b>2. Chọn phương thức thanh toán:</b> <br />
+                        <input id="rad1" type="radio" name="cachgiao" value="giao hang tan noi" checked>Giao tận nơi 
+                        <input type="radio" name="cachgiao" value="giao hang o cua hang">Nhận ở của hàng
+                    </div>
+                    <div class="modal-footer">
+                        <button id="dathang" class="btn btn-primary btn-block" type="button" onclick="thanhToan()">
+                            ĐẶT HÀNG
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <nav id="nav" class="navbar navbar-inverse" data-spy="affix">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="font-size: 16px; font-weight: bold" href="@Url.Action("Index","Home")">T-Store</a>
+                <form class="navbar-form navbar-left" style="max-width: 100%" action="/Home/Index" method="get">
+                    <div class="input-group">
+                        <input type="text" id="search" class="form-control" placeholder="Search" name="keyword">
+                        <div id="divtimkiem">
+                            <ul></ul>
+                        </div>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="collapse navbar-collapse text-center" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a class="moveSection" href="@ViewBag.Url#section1"><i class="fa fa-mobile" style="font-size:30px"></i><br /><span class="hidemenu">Điện thoại</span></a></li>
+                    <li><a class="moveSection" href="@ViewBag.Url#section2"><i class="fa fa-tablet" style="font-size:30px"></i><br /><span class="hidemenu">Tablet</span></a></li>
+                    <li><a class="moveSection" href="@ViewBag.Url#section3"><i class="fa fa-laptop" style="font-size:30px"></i><br /><span class="hidemenu">Laptop</span></a></li>
+                    <li><a class="moveSection" href="@ViewBag.Url#section4"><i class="fa fa-headphones" style="font-size:30px"></i><br /><span class="hidemenu">Phụ kiện</span></a></li>
+                    <li><a class="moveSection" href="@ViewBag.Url#section5"><i class="fa fa-newspaper-o" style="font-size:30px"></i><br /><span class="hidemenu">Tin hay</span></a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+    <div class="@ViewBag.Container">
+        @RenderBody()
+    </div>
+
+    <hr>
+    <footer class="container-fluid text-center">
+        <p>Online Store Copyright</p>
+        <form class="form-inline">
+            Get deals:
+            <input id="emailAddress" type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+
+        </form>
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 text-left" style="border-right: solid white 1px">
+                    <ul style="list-style-type: none; padding-left: 0">
+                        <li><h4>Information</h4></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Advanced Search</a></li>
+                        <li><a href="#">Orders and Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-3 text-left" style="border-right: solid white 1px">
+                    <ul style="list-style-type: none; padding-left: 0">
+                        <li><h4>Why buy from us</h4></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Site Map</a></li>
+                        <li><a href="#">Search Terms</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-3 text-left" style="border-right: solid white 1px">
+                    <ul style="list-style-type: none; padding-left: 0">
+                        <li><h4>My account</h4></li>
+                        <li><a href="#">Sign In</a></li>
+                        <li><a href="#">View Cart</a></li>
+                        <li><a href="#">My Wishlist</a></li>
+                        <li><a href="#">Track My Order</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-3 text-left">
+                    <ul style="list-style-type: none; padding-left: 0">
+                        <li><h4>Contact</h4></li>
+                        <li>+91-123-456789</li>
+                        <li>+00-123-000000</li>
+                    </ul>
+                    <div class="social-icons">
+                        <ul style="list-style-type: none; padding-left: 0">
+                            <li><h4>Follow Us</h4></li>
+                            <li>
+                                <i class="fa fa-facebook" data-toggle="tooltip" data-placement="top" title="facebook!"></i>
+                                <i class="fa fa-twitter" data-toggle="tooltip" data-placement="top" title="twitter!"> </i>
+                                <i class="fa fa-google-plus" data-toggle="tooltip" data-placement="top" title="Google!"> </i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/myScript")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
